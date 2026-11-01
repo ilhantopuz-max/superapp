@@ -79,7 +79,7 @@ fun CustomersScreen(vm: MainViewModel, mic: ((String) -> Unit) -> Unit) {
         LazyColumn(contentPadding = PaddingValues(16.dp, 16.dp, 16.dp, 90.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             item { OutlinedTextField(q, { q = it }, label = { Text("Müşteri ara") }, modifier = Modifier.fillMaxWidth(), singleLine = true) }
             items(customers.filter { q.isBlank() || it.name.contains(q, true) || it.company.contains(q, true) }, key = { it.id }) { c ->
-                Card(Modifier.fillMaxWidth(), onClick = { selected = c.id }) {
+                Card(onClick = { selected = c.id }, modifier = Modifier.fillMaxWidth()) {
                     Column(Modifier.padding(12.dp)) {
                         Text(c.name, fontWeight = FontWeight.Bold)
                         Text("${c.company.ifBlank { "—" }} • ${c.status}", style = MaterialTheme.typography.bodySmall)
@@ -220,7 +220,7 @@ fun MeetingsScreen(vm: MainViewModel, mic: ((String) -> Unit) -> Unit) {
         LazyColumn(contentPadding = PaddingValues(16.dp, 16.dp, 16.dp, 90.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             if (meetings.isEmpty()) item { Text("Henüz toplantı yok.") }
             items(meetings, key = { it.id }) { m ->
-                Card(Modifier.fillMaxWidth(), onClick = { selected = m.id }) {
+                Card(onClick = { selected = m.id }, modifier = Modifier.fillMaxWidth()) {
                     Column(Modifier.padding(12.dp)) {
                         Text(m.title, fontWeight = FontWeight.Bold)
                         Text(fmt(m.startAt), style = MaterialTheme.typography.bodySmall)
