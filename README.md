@@ -14,13 +14,13 @@ Base64: `base64 -w0 release.jks`. `v1.0.0` gibi bir etiket (tag) atarsanız APK'
 ## Gerçekten çalışan (MVP)
 Türkçe sesli komut + sesli yanıt, çevrimdışı komutlar (hatırlat / not al / bugünkü işler), görevler ve tekrarlı hatırlatma bildirimleri,
 notlar (arama, kategori), CRM (müşteri, görüşme kaydı, durum, sonraki görüşme), toplantılar (gündem, dikte metni, çakışma uyarısı),
-CEO paneli, yapay zekâ (OpenAI uyumlu / Anthropic) ile özet, rapor, e-posta ve mesaj taslağı, PIN + biyometrik kilit,
+CEO paneli, yapay zekâ (Google Gemini ücretsiz katman / Anthropic) ile özet, rapor, e-posta ve mesaj taslağı, PIN + biyometrik kilit,
 şifreli anahtar saklama, JSON dışa aktarma, tüm verileri silme, koyu/açık tema.
 
 ## Henüz YAPILMADI (açıkça)
 - Gmail API ve Google Calendar API (OAuth istemci kimliği gerekir). Şimdilik: e-posta taslağı e-posta uygulamasında açılır, takvime ekleme Google Takvim ekranı ile yapılır.
 - Rehber (Contacts) okuma, WhatsApp sesli mesaj kaydı/gönderimi (şimdilik wa.me ile hazır metin açılır).
-- (Kartvizit tarama eklendi: ML Kit ile cihazda OCR.)
+- (Card tarama eklendi: ML Kit ile cihazda OCR.)
 - PDF/Word/Excel okuma ve oluşturma; ses dosyası kaydı (yalnızca dikte → metin).
 - Sesli uyandırma kelimesi, WorkManager ile sabah özeti, veritabanı şifreleme (SQLCipher).
 - Proje bu ortamda derlenip cihazda test EDİLMEDİ; ilk Actions çalışmasında hata çıkarsa log'u bana iletin.

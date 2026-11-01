@@ -38,10 +38,10 @@ fun SettingsScreen(vm: MainViewModel) {
             }
         }
         InfoCard("Yapay zekâ bağlantısı") {
-            Chips(listOf("openai", "anthropic"), provider) {
+            Chips(listOf("gemini", "anthropic"), provider) {
                 provider = it
                 if (it == "anthropic") { baseUrl = "https://api.anthropic.com/v1"; model = "claude-sonnet-5-5" }
-                else { baseUrl = "https://api.openai.com/v1"; model = "gpt-4o-mini" }
+                else { baseUrl = "https://generativelanguage.googleapis.com/v1beta"; model = "gemini-2.5-flash" }
             }
             OutlinedTextField(baseUrl, { baseUrl = it }, label = { Text("Adres (Base URL)") }, modifier = Modifier.fillMaxWidth())
             OutlinedTextField(model, { model = it }, label = { Text("Model") }, modifier = Modifier.fillMaxWidth())
@@ -49,7 +49,7 @@ fun SettingsScreen(vm: MainViewModel) {
                 key, { key = it }, label = { Text("API anahtarı") }, modifier = Modifier.fillMaxWidth(),
                 visualTransformation = PasswordVisualTransformation(), singleLine = true
             )
-            Text("Anahtar yalnızca bu cihazda, Android Keystore ile şifreli saklanır. “openai” seçeneği OpenAI uyumlu tüm uçlarda (ör. OpenRouter) çalışır.", style = MaterialTheme.typography.labelSmall)
+            Text("Anahtar yalnızca bu cihazda, Android Keystore ile şifreli saklanır. “gemini” için ücretsiz anahtarı aistudio.google.com/apikey adresinden alabilirsiniz (ücretsiz kota günlük/dakikalık sınırlıdır).", style = MaterialTheme.typography.labelSmall)
             Button(onClick = {
                 p.provider = provider; p.baseUrl = baseUrl.trim(); p.model = model.trim(); p.apiKey = key.trim()
                 vm.say("Yapay zekâ ayarları kaydedildi.")

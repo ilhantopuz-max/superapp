@@ -60,7 +60,7 @@ fun CardScanScreen(vm: MainViewModel) {
     }
 
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        InfoCard("Kartvizit tara") {
+        InfoCard("Card tara") {
             Text("Kartı düz bir zemine koyup yeterli ışıkta çekin. Okuma cihazda yapılır, internet gerekmez.")
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = {
@@ -91,7 +91,7 @@ fun CardScanScreen(vm: MainViewModel) {
                         vm.say("Bu kişi müşterilerde zaten kayıtlı görünüyor.")
                     } else {
                         val note = buildString {
-                            append("Kartvizitten eklendi.")
+                            append("Card taramasından eklendi.")
                             if (title.isNotBlank()) append("\nÜnvan: $title")
                             if (web.isNotBlank()) append("\nWeb: $web")
                         }

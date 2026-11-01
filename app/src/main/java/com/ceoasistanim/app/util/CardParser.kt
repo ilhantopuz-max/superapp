@@ -7,7 +7,7 @@ data class ScannedCard(
     val phone: String = "", val email: String = "", val web: String = ""
 )
 
-/** OCR metninden kartvizit alanlarını tahmin eder. Sonuç her zaman kullanıcı tarafından düzeltilebilir. */
+/** OCR metninden Card alanlarını tahmin eder. Sonuç her zaman kullanıcı tarafından düzeltilebilir. */
 object CardParser {
     private val tr = Locale("tr", "TR")
     private val emailRe = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")

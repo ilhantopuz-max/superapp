@@ -8,30 +8,35 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
-/** Değiştirilebilir yapay zekâ altyapısı: OpenAI uyumlu uçlar (OpenAI, OpenRouter, vb.) veya Anthropic. */
+/** Değiştirilebilir yapay zekâ altyapısı: Google Gemini (ücretsiz katman) veya Anthropic. */
 object AiClient {
     suspend fun complete(p: SecurePrefs, system: String, user: String): Result<String> =
         withContext(Dispatchers.IO) {
             runCatching {
-                if (p.provider == "anthropic") anthropic(p, system, user) else openAi(p, system, user)
+                if (p.provider == "anthropic") anthropic(p, system, user) else gemini(p, system, user)
             }
         }
 
-    private fun openAi(p: SecurePrefs, system: String, user: String): String {
+    private fun gemini(p: SecurePrefs, system: String, user: String): String {
         val body = JSONObject()
-            .put("model", p.model)
+            .put("system_instruction", JSONObject().put("parts", JSONArray().put(JSONObject().put("text", system))))
             .put(
-                "messages", JSONArray()
-                    .put(JSONObject().put("role", "system").put("content", system))
-                    .put(JSONObject().put("role", "user").put("content", user))
+                "contents", JSONArray().put(
+                    JSONObject().put("role", "user")
+                        .put("parts", JSONArray().put(JSONObject().put("text", user)))
+                )
             )
+        val base = p.baseUrl.trimEnd('/').ifBlank { "https://generativelanguage.googleapis.com/v1beta" }
         val res = post(
-            p.baseUrl.trimEnd('/') + "/chat/completions",
-            mapOf("Authorization" to "Bearer ${p.apiKey}"),
+            "$base/models/${p.model}:generateContent",
+            mapOf("x-goog-api-key" to p.apiKey),
             body.toString()
         )
-        return JSONObject(res).getJSONArray("choices").getJSONObject(0)
-            .getJSONObject("message").getString("content").trim()
+        val parts = JSONObject(res).getJSONArray("candidates").getJSONObject(0)
+            .getJSONObject("content").getJSONArray("parts")
+        val sb = StringBuilder()
+        for (k in 0 until parts.length()) sb.append(parts.getJSONObject(k).optString("text"))
+        return sb.toString().trim()
     }
 
     private fun anthropic(p: SecurePrefs, system: String, user: String): String {

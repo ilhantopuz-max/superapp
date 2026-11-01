@@ -19,13 +19,13 @@ class SecurePrefs(ctx: Context) {
     private fun put(k: String, v: String) = sp.edit().putString(k, v).apply()
 
     var provider: String
-        get() = str("provider", "openai")
+        get() = str("provider", "gemini")
         set(v) = put("provider", v)
     var baseUrl: String
-        get() = str("baseUrl", "https://api.openai.com/v1")
+        get() = str("baseUrl", "https://generativelanguage.googleapis.com/v1beta")
         set(v) = put("baseUrl", v)
     var model: String
-        get() = str("model", "gpt-4o-mini")
+        get() = str("model", "gemini-2.5-flash")
         set(v) = put("model", v)
     var apiKey: String
         get() = str("apiKey", "")
