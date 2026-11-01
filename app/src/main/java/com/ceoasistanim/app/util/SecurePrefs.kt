@@ -25,7 +25,7 @@ class SecurePrefs(ctx: Context) {
         get() = str("baseUrl", "https://generativelanguage.googleapis.com/v1beta")
         set(v) = put("baseUrl", v)
     var model: String
-        get() = str("model", "gemini-3.8-flash")
+        get() = str("model", "gemini-3.5-flash")
         set(v) = put("model", v)
     var apiKey: String
         get() = str("apiKey", "")

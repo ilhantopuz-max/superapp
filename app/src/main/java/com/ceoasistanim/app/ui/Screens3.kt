@@ -41,7 +41,7 @@ fun SettingsScreen(vm: MainViewModel) {
             Chips(listOf("gemini", "anthropic"), provider) {
                 provider = it
                 if (it == "anthropic") { baseUrl = "https://api.anthropic.com/v1"; model = "claude-sonnet-5-5" }
-                else { baseUrl = "https://generativelanguage.googleapis.com/v1beta"; model = "gemini-3.8-flash" }
+                else { baseUrl = "https://generativelanguage.googleapis.com/v1beta"; model = "gemini-3.5-flash" }
             }
             OutlinedTextField(baseUrl, { baseUrl = it }, label = { Text("Adres (Base URL)") }, modifier = Modifier.fillMaxWidth())
             OutlinedTextField(model, { model = it }, label = { Text("Model") }, modifier = Modifier.fillMaxWidth())
