@@ -20,6 +20,7 @@ CEO paneli, yapay zekâ (OpenAI uyumlu / Anthropic) ile özet, rapor, e-posta ve
 ## Henüz YAPILMADI (açıkça)
 - Gmail API ve Google Calendar API (OAuth istemci kimliği gerekir). Şimdilik: e-posta taslağı e-posta uygulamasında açılır, takvime ekleme Google Takvim ekranı ile yapılır.
 - Rehber (Contacts) okuma, WhatsApp sesli mesaj kaydı/gönderimi (şimdilik wa.me ile hazır metin açılır).
+- (Kartvizit tarama eklendi: ML Kit ile cihazda OCR.)
 - PDF/Word/Excel okuma ve oluşturma; ses dosyası kaydı (yalnızca dikte → metin).
 - Sesli uyandırma kelimesi, WorkManager ile sabah özeti, veritabanı şifreleme (SQLCipher).
 - Proje bu ortamda derlenip cihazda test EDİLMEDİ; ilk Actions çalışmasında hata çıkarsa log'u bana iletin.

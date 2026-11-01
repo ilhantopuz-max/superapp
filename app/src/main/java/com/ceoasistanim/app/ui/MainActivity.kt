@@ -41,7 +41,7 @@ class MainActivity : FragmentActivity() {
 }
 
 private enum class Screen(val label: String) {
-    PANEL("Panel"), TASKS("Görevler"), NOTES("Notlar"), CUSTOMERS("Müşteriler"), MEETINGS("Toplantı"), SETTINGS("Ayarlar")
+    PANEL("Panel"), TASKS("Görevler"), NOTES("Notlar"), CUSTOMERS("Müşteriler"), MEETINGS("Toplantı"), CARDS("Kartvizit"), SETTINGS("Ayarlar")
 }
 
 @Composable
@@ -75,10 +75,11 @@ private fun Root(activity: FragmentActivity, vm: MainViewModel) {
             NavigationBar {
                 listOf(
                     Triple(Screen.PANEL, Icons.Filled.Dashboard, "Panel"),
-                    Triple(Screen.TASKS, Icons.Filled.CheckCircle, "Görevler"),
+                    Triple(Screen.TASKS, Icons.Filled.CheckCircle, "Görev"),
                     Triple(Screen.NOTES, Icons.Filled.Edit, "Notlar"),
                     Triple(Screen.CUSTOMERS, Icons.Filled.People, "Müşteri"),
-                    Triple(Screen.MEETINGS, Icons.Filled.Event, "Toplantı")
+                    Triple(Screen.MEETINGS, Icons.Filled.Event, "Toplantı"),
+                    Triple(Screen.CARDS, Icons.Filled.CameraAlt, "Kartvizit")
                 ).forEach { (s, icon, label) ->
                     NavigationBarItem(
                         selected = screen == s, onClick = { screen = s },
@@ -111,6 +112,7 @@ private fun Root(activity: FragmentActivity, vm: MainViewModel) {
                     Screen.NOTES -> NotesScreen(vm, mic)
                     Screen.CUSTOMERS -> CustomersScreen(vm, mic)
                     Screen.MEETINGS -> MeetingsScreen(vm, mic)
+                    Screen.CARDS -> CardScanScreen(vm)
                     Screen.SETTINGS -> SettingsScreen(vm)
                 }
             }
