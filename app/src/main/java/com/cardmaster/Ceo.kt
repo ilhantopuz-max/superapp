@@ -158,9 +158,10 @@ class CeoVM(app: Application) : AndroidViewModel(app) {
 
     suspend fun conflictsOf(e: EventItem): List<EventItem> {
         val end = if (e.endAt > e.startAt) e.endAt else e.startAt + 30 * 60_000L
-        return dao.eventsSnap().filter {
-            it.id != e.id && it.kind != "Hatırlatma" && e.kind != "Hatırlatma" &&
-                e.startAt < (if (it.endAt > it.startAt) it.endAt else it.startAt + 30 * 60_000L) && end > it.startAt
+        return dao.eventsSnap().filter { o ->
+            val oEnd = if (o.endAt > o.startAt) o.endAt else o.startAt + 30 * 60_000L
+            val overlap = end > o.startAt && oEnd > e.startAt
+            o.id != e.id && o.kind != "Hatırlatma" && e.kind != "Hatırlatma" && overlap
         }
     }
 
