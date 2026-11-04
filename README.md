@@ -1,26 +1,15 @@
-# CEO ASİSTANIM (MVP v0.1.0)
+# SüperApp (Card + CEO asistanı)
 
-## APK'yı GitHub'dan indirme
-1. Bu klasörün içeriğini yeni bir GitHub deposuna yükleyin (`.github` klasörü dahil, `main` dalına).
-2. Depoda **Actions** sekmesi → **Build APK** → çalışmanın bitmesini bekleyin (~5-8 dk).
-3. Çalışmaya tıklayın → en altta **Artifacts** → `CEO-ASISTANIM-debug-apk` indirin → zip içindeki `app-debug.apk` dosyasını telefona kurun (bilinmeyen kaynaklara izin verin).
-4. Derleme otomatik başlamazsa: Actions → Build APK → **Run workflow**.
+Tek APK, alt menüde: Panel · Asistan · **Card** (CardMaster, olduğu gibi) · Müşteri · Daha (Takvim & Görevler, Notlar, Ayarlar).
 
-## İmzalı release APK (isteğe bağlı)
-Secrets (Settings → Secrets and variables → Actions): `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`.
-Keystore üretimi: `keytool -genkeypair -v -keystore release.jks -alias ceo -keyalg RSA -keysize 2048 -validity 10000`
-Base64: `base64 -w0 release.jks`. `v1.0.0` gibi bir etiket (tag) atarsanız APK'lar GitHub Release'e de eklenir.
+## APK nasıl alınır
+1. GitHub'da yeni repo aç, bu klasörün TÜM içeriğini (gizli `.github` klasörü dahil) yükle.
+2. Actions → "Build APK" otomatik çalışır (~5-8 dk).
+3. Releases bölümünden `SuperApp.apk` indir, telefona kur (CardMaster'ın üstüne de kurulur, kartvizitler korunur).
+4. Ayarlar sekmesinden Gemini API anahtarını gir (Card ile ortak).
 
-## Gerçekten çalışan (MVP)
-Türkçe sesli komut + sesli yanıt, çevrimdışı komutlar (hatırlat / not al / bugünkü işler), görevler ve tekrarlı hatırlatma bildirimleri,
-notlar (arama, kategori), CRM (müşteri, görüşme kaydı, durum, sonraki görüşme), toplantılar (gündem, dikte metni, çakışma uyarısı),
-CEO paneli, yapay zekâ (Google Gemini ücretsiz katman / Anthropic) ile özet, rapor, e-posta ve mesaj taslağı, PIN + biyometrik kilit,
-şifreli anahtar saklama, JSON dışa aktarma, tüm verileri silme, koyu/açık tema.
+## Gerçekten çalışanlar (ilk sürüm)
+Card (OCR, rehber, yedek), Gemini asistan (yazılı/sesli, sesli yanıt, not/görev/etkinlik/alarm/müşteri komutları; e-posta, WhatsApp ve iptal için onay), çevrimdışı basit komutlar, Panel + günlük AI özeti + danışman, Not, Görev (tekrarlı), Takvim (çakışma uyarısı, hatırlatma bildirimi, Google Takvim'e ekle), Müşteri/CRM (görüşme geçmişi, teklif, AI önerisi), PIN kilidi, şifreli API anahtarı.
 
-## Henüz YAPILMADI (açıkça)
-- Gmail API ve Google Calendar API (OAuth istemci kimliği gerekir). Şimdilik: e-posta taslağı e-posta uygulamasında açılır, takvime ekleme Google Takvim ekranı ile yapılır.
-- Rehber (Contacts) okuma, WhatsApp sesli mesaj kaydı/gönderimi (şimdilik wa.me ile hazır metin açılır).
-- (Card tarama eklendi: ML Kit ile cihazda OCR.)
-- PDF/Word/Excel okuma ve oluşturma; ses dosyası kaydı (yalnızca dikte → metin).
-- Sesli uyandırma kelimesi, WorkManager ile sabah özeti, veritabanı şifreleme (SQLCipher).
-- Proje bu ortamda derlenip cihazda test EDİLMEDİ; ilk Actions çalışmasında hata çıkarsa log'u bana iletin.
+## Henüz YOK (sonraki aşama)
+Toplantı kaydı/özeti, E-posta ekranı, Rehber/WhatsApp ekranı, dosya (PDF/Word/Excel) okuma-oluşturma, tüm veride arama, biyometrik kilit, Gmail API ve Google Calendar API (OAuth), otomatik sabah özeti bildirimi. Kod derleme bu ortamda test edilemedi; ilk Actions çalışmasında hata çıkarsa log'u gönder.

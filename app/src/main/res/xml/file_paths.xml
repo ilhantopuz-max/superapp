@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
-    <cache-path name="cards" path="cards/" />
+    <files-path name="cards" path="cards/" />
+    <files-path name="audio" path="audio/" />
+    <files-path name="docs" path="docs/" />
 </paths>
